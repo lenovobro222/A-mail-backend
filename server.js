@@ -5,7 +5,11 @@ const { Resend } = require('resend');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['https://a-mail-eta.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json());
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
